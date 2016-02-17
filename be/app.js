@@ -4,10 +4,11 @@ var app = express();
 
 var port = 8000;
 
+app.use(bodyParser());
 app.use("/", express.static(__dirname));
 
 app.get("/", function(req, res){
-    res.send("");
+    return res.send("Hello Sissy Li");
 });
 
 app.listen(port);

@@ -1,3 +1,20 @@
 "use strict";
-var component = require("./component.js");
-document.body.appendChild(component());
+var React = require("react");
+var ReactDOM = require("react-dom");
+
+window.React = React;
+
+var CommentBox = React.createClass({
+    render: function() {
+        return (
+            <div className="commentBox">
+                Hello, world! I am a CommentBox.
+            </div>
+        );
+    }
+});
+
+React.render(
+    <CommentBox/>,
+    document.getElementById('content')
+);

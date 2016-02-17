@@ -1,8 +1,17 @@
 var path = require("path");
 module.exports = {
-    entry: ['webpack/hot/dev-server', path.resolve(__dirname, "app/main.js")],
+    entry: {
+        bundle: "./app/main.js",
+        react: "./node_modules/react/dist/react.min.js"
+    },
     output: {
         path: path.resolve(__dirname, "build"),
-        filename: "bundle.js"
+        filename: "[name].js"
+    },
+    module: {
+        loaders: [{
+            test: /\.(js)$/,
+            loader: "jsx-loader?harmony"
+        }]
     }
 };
