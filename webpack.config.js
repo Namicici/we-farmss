@@ -1,17 +1,37 @@
+"use strict";
+
+var webpack = require("webpack");
 var path = require("path");
+var htmlWebpackPlugin = require("html-webpack-plugin");
+
 module.exports = {
+    context:__dirname + "/src",
     entry: {
-        bundle: "./app/main.js",
-        react: "./node_modules/react/dist/react.min.js"
+        //signal:'webpack/hot/signal.js',
+        bundle: "./main.js",
+        react: "../node_modules/react/dist/react.min.js"
     },
     output: {
-        path: path.resolve(__dirname, "build"),
-        filename: "[name].js"
+        path: __dirname + "/dist",
+        filename: "[name].[hash].js"
     },
     module: {
-        loaders: [{
-            test: /\.(js)$/,
-            loader: "jsx-loader?harmony"
-        }]
-    }
+        loaders: [
+            {test: /\.html$/, loader: 'html'},
+            {test: /\.(js)$/, loader: "jsx-loader?harmony"}
+        ]
+    },
+    target:'node',
+    plugins:[
+        new htmlWebpackPlugin({
+            filename:"index.html",
+            template:"index.html"
+        })
+        ,new webpack.HotModuleReplacementPlugin({quiet:true})
+        ,new webpack.DefinePlugin({
+            "process.env": {
+                NODE_ENV: JSON.stringify("production")
+            }
+        })
+    ]
 };
