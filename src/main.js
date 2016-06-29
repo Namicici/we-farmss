@@ -8,7 +8,7 @@ var Logo = React.createClass({
     render: function(){
         return(
             <div className="logo">
-                <img src="./logo.png"/>
+                <img src={require("./images/logo.png")}/>
             </div>
         )
     }
@@ -19,7 +19,7 @@ var TopBar = React.createClass({
         return(
             <div className="topBar">
                 Hello world! sissy li
-                <logo/>
+                <Logo/>
             </div>
         )
     }
