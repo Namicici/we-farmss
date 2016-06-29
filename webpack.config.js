@@ -11,7 +11,7 @@ module.exports = {
     context:__dirname + "/src",
     entry: {
         //signal:'webpack/hot/signal.js',
-        bundle: ["./main.js", hotMiddlewareScript],
+        bundle: ["./app/index.js", hotMiddlewareScript],
         react: ["../node_modules/react/dist/react.min.js", hotMiddlewareScript]
     },
     output: {
