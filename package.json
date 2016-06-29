@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "dependencies": {
     "body-parser": "^1.15.0",
+    "cross-env": "^1.0.8",
     "express": "^4.13.4",
     "html-loader": "^0.4.3",
     "html-webpack-plugin": "^2.16.0",
@@ -11,13 +12,17 @@
     "react": "^0.14.7",
     "react-dom": "^0.14.7",
     "react-router": "^2.0.0",
+    "reload": "^1.0.0",
+    "url-loader": "^0.5.7",
     "webpack": "^2.0.6-beta",
     "webpack-dev-server": "^1.14.1"
   },
   "scripts": {
+    "start": "cross-env NODE_ENV=dev supervisor -w server,start.js start",
     "build": "webpack",
-    "dev": "webpack-dev-server --devtool eval --progress --colors --hot --content-base build",
-    "start": "npm run build && node start.js",
-    "watch":"webpack --watch"
+    "production": "cross-env NODE_ENV=production node start"
+  },
+  "devDependencies": {
+    "webpack-hot-middleware": "^2.11.0"
   }
 }

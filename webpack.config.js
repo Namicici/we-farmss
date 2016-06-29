@@ -4,34 +4,35 @@ var webpack = require("webpack");
 var path = require("path");
 var htmlWebpackPlugin = require("html-webpack-plugin");
 
+var publicPath = 'http://localhost:9000/';
+var hotMiddlewareScript = 'webpack-hot-middleware/client?reload=true';
+
 module.exports = {
     context:__dirname + "/src",
     entry: {
         //signal:'webpack/hot/signal.js',
-        bundle: "./main.js",
-        react: "../node_modules/react/dist/react.min.js"
+        bundle: ["./main.js", hotMiddlewareScript],
+        react: ["../node_modules/react/dist/react.min.js", hotMiddlewareScript]
     },
     output: {
-        path: __dirname + "/dist",
-        filename: "[name].[hash].js"
+        path:__dirname + "/dist",
+        filename: "[name].[hash].js",
+        publicPath:publicPath
     },
     module: {
         loaders: [
             {test: /\.html$/, loader: 'html'},
-            {test: /\.(js)$/, loader: "jsx-loader?harmony"}
+            {test: /\.(js)$/, loader: "jsx-loader?harmony"},
+			{test: /\.(jpe?g|png|gif|svg|ttf|woff|woff2)(\?v=\d+\.\d+\.\d+)?$/, loader:"url-loader" }
         ]
     },
-    target:'node',
     plugins:[
         new htmlWebpackPlugin({
             filename:"index.html",
             template:"index.html"
         })
-        ,new webpack.HotModuleReplacementPlugin({quiet:true})
-        ,new webpack.DefinePlugin({
-            "process.env": {
-                NODE_ENV: JSON.stringify("production")
-            }
-        })
+        ,new webpack.optimize.OccurrenceOrderPlugin()
+        ,new webpack.HotModuleReplacementPlugin()
+        ,new webpack.NoErrorsPlugin()
     ]
 };
