@@ -9,4 +9,7 @@ export default class Message extends Component {
       </div>
     );
   }
-}
+};
+if(module.hot) {
+     module.hot.accept();
+ }

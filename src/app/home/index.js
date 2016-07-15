@@ -18,4 +18,7 @@ export default class Home extends Component {
       </div>
     );
   }
-}
+};
+if(module.hot) {
+     module.hot.accept();
+ }

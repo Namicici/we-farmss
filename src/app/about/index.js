@@ -17,4 +17,7 @@ export default class About extends Component {
       </div>
     );
   }
-}
+};
+if(module.hot) {
+     module.hot.accept();
+ }
