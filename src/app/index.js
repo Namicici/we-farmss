@@ -1,21 +1,41 @@
-"use strict";
+import React from 'react';
+import ReactDOM from 'react-dom';
+import {Router, Route, DefaultRoute, HashLocation, run} from 'react-router';
+import asyncLoader from './async-loader';
+import App from './app';
+import Home from './home';
+import About from 'bundle?lazy!./about';
+import Inbox from 'bundle?lazy!./inbox';
+import Message from 'bundle?lazy!./inbox/message';
+import AchiveMessage from 'bundle?lazy!./achive/message';
 
-var React = require("react");
-var Router = require("react-router").Router;
-var Route = require("react-router").Route;
-var hashHistory = require("react-router").hashHistory;
-var ReactDOM = require("react-dom");
-
-var Home = require("./home/home.js");
-var TopBar = require("./main/main.js");
-
+let routes = (
+    <Route path="/" handler={App}>
+        <DefaultRoute name="home" handler={Home}/>
+        <Route name="about" path="about" handler={asyncLoader(About)}/>
+        <Route name="inbox" path="inbox" handler={asyncLoader(Inbox)}>
+            <Route name="message" path="message/:id" handler={asyncLoader(Message)}/>
+        </Route>
+        <Route name="achive" path="/message/:id" handler={asyncLoader(AchiveMessage)}/>
+    </Route>
+);
+/*
 ReactDOM.render(
-	<Router history={hashHistory}>
-		<Route path="/" component={Home}></Route>
-		<Route path="/main" component={TopBar}></Route>
-	</Router>, document.getElementById("content"));
+    <Router>
+        <Route path="/" handler={App}>
+            <DefaultRoute name="home" handler={Home}/>
+            <Route name="about" path="about" handler={asyncLoader(About)}/>
+            <Route name="inbox" path="inbox" handler={asyncLoader(Inbox)}>
+                <Route name="message" path="message/:id" handler={asyncLoader(Message)}/>
+            </Route>
+            <Route name="achive" path="/message/:id" handler={asyncLoader(AchiveMessage)}/>
+        </Route>
+    </Router>
+, document.getElementById('content'));
+*/
 
+run(routes, HashLocation, function(Root){
+    React.render(<Root/>, document.getElementById('content'));
+});
 
-if(module.hot) {
-    module.hot.accept();
-}
+//ReactDOM.render(<App/>, document.getElementById('content'));

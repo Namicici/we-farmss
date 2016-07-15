@@ -10,9 +10,7 @@ var hotMiddlewareScript = 'webpack-hot-middleware/client?reload=true';
 module.exports = {
     context:__dirname + "/src",
     entry: {
-        //signal:'webpack/hot/signal.js',
-        bundle: ["./app/index.js", hotMiddlewareScript],
-        react: ["../node_modules/react/dist/react.min.js", hotMiddlewareScript]
+        bundle: ["./app/index.js", hotMiddlewareScript]
     },
     output: {
         path:__dirname + "/dist",
@@ -22,7 +20,7 @@ module.exports = {
     module: {
         loaders: [
             {test: /\.html$/, loader: 'html'},
-            {test: /\.(js)$/, loader: "jsx-loader?harmony"},
+            {test: /\.jsx?$/, exclude: /(node_modules|bower_components)/, loader: 'babel-loader?stage=0'},
 			{test: /\.(jpe?g|png|gif|svg|ttf|woff|woff2)(\?v=\d+\.\d+\.\d+)?$/, loader:"url-loader" }
         ]
     },
