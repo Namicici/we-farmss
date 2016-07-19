@@ -14,6 +14,7 @@ export default class Home extends Component {
           <li><Link to="about">#about</Link></li>
           <li><Link to="inbox">#inbox</Link></li>
           <li><Link to="achive" params={{id:1}}>#achive message</Link></li>
+          <img src={require("../../images/logo.png")}/>
         </ul>
       </div>
     );

@@ -16,7 +16,11 @@
     "reload": "^1.0.0",
     "url-loader": "^0.5.7",
     "webpack": "^1.9.9",
-    "webpack-dev-server": "^1.14.1"
+    "webpack-dev-server": "^1.14.1",
+    "gulp-sftp": "^0.1.5",
+    "gulp-zip": "3.1.0",
+    "gulp": "^3.9.1",
+    "ssh2": "0.4.13"
   },
   "scripts": {
     "start": "cross-env NODE_ENV=dev supervisor -w server,start.js start",
