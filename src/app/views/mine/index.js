@@ -1,11 +1,13 @@
 import React, {Component} from 'react';
+import BottomTab from '../../common/bottom-tab.js';
 
-export default class Message extends Component {
+export default class Mine extends Component {
   render() {
     return (
       <div>
         <h3>achive message</h3>
-        <p>{this.props.params.id}</p>
+        <p>mine</p>
+        <BottomTab/>
       </div>
     );
   }

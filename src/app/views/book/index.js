@@ -1,11 +1,8 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router';
+import BottomTab from '../../common/bottom-tab.js';
 
-
-/**
- * About App
- */
-export default class About extends Component {
+export default class Book extends Component {
   render() {
     return (
       <div>
@@ -14,6 +11,7 @@ export default class About extends Component {
           webpack + bundle-loader + react-router
         </p>
         <Link to="home">back to home</Link>
+        <BottomTab/>
       </div>
     );
   }
