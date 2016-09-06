@@ -11,13 +11,13 @@ export default class BottomTab extends Component {
                 'left':0,
                 'height':'32px',
                 'background':'mediumaquamarine',
-                'padding-top': '8px'
+                'paddingTop': '8px'
             },
             item:{
                 'width':'33%',
                 'display':'inline-block',
-                'text-align':'center',
-                'text-decoration':'none',
+                'textAlign':'center',
+                'textDecoration':'none',
                 'color':'white'
             },
         }
